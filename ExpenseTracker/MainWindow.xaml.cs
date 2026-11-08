@@ -56,10 +56,10 @@ namespace ExpenseTracker
             }
         }
 
-        // Добавление расхода
+       
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            // Простая валидация
+            
             if (dpDate.SelectedDate == null)
             {
                 MessageBox.Show("Выберите дату.");
@@ -84,7 +84,7 @@ namespace ExpenseTracker
                 {
                     conn.Open();
 
-                    // Параметризованный запрос — защита от SQL-инъекций [citation:6]
+                    
                     string query = @"INSERT INTO Expenses (Date, Category, Description, Amount) 
                                      VALUES (@Date, @Category, @Description, @Amount)";
 
@@ -101,7 +101,7 @@ namespace ExpenseTracker
                     }
                 }
 
-                // Очистка полей и обновление таблицы
+                
                 txtCategory.Clear();
                 txtDescription.Clear();
                 txtAmount.Clear();
@@ -123,7 +123,7 @@ namespace ExpenseTracker
 
             decimal total = 0;
 
-            // Проходим по всем строкам в DataGrid
+            
             foreach (var item in dgExpenses.Items)
             {
                 if (item is DataRowView rowView)
@@ -136,17 +136,17 @@ namespace ExpenseTracker
                 }
             }
 
-            // Форматируем вывод (например, 1500.50)
+           
             txtTotalSum.Text = total.ToString("N2");
         }
 
-        // Обновление таблицы
+        
         private void BtnRefresh_Click(object sender, RoutedEventArgs e)
         {
             LoadData();
         }
 
-        // Удаление выбранной записи
+        
         private void BtnDelete_Click(object sender, RoutedEventArgs e)
         {
             if (dgExpenses.SelectedItem == null)
